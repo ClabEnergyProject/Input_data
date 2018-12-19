@@ -98,7 +98,7 @@ def cal_incidence_angles(zenith, solar_azi, tilt_pv, azim_pv, pv_type):
         incidence_rad = np.where( (solar_azi<(-1)*max_azim_angle), np.arccos(np.cos(zenith)*np.cos(tilt_pv)+np.sin(zenith)*np.sin(tilt_pv)*np.cos(solar_azi-max_azim_angle)), incidence_rad )
         
     elif pv_type == 'h':
-        print ('Using 1-axis tracking panel, with horizontal axis, no tilt, horizontal axis')
+        print ('Using 1-axis horizontal tracking panel, with axis parallel to panel surface')
         # adjusted tilt is the tilt after the panel rotated on its axis 
         # the tilt is the angle between surface normal and panel surface normal
         adjusted_azim = np.zeros([361,540])
@@ -111,7 +111,7 @@ def cal_incidence_angles(zenith, solar_azi, tilt_pv, azim_pv, pv_type):
         incidence_rad = np.arccos(np.cos(zenith)*np.cos(adjusted_tilt) + np.sin(zenith)*np.sin(adjusted_tilt)*np.cos(solar_azi-adjusted_azim))
         
     elif pv_type == 'ht':
-        print ('Using 1-axis tracking panel, with horizontal axis, with tilt')
+        print ('Using 1-axis tracking panel with tilt, with axis parallel to panel surface')
         incidence_rad_tmp = np.arccos(np.cos(zenith)*np.cos(tilt_pv) + np.sin(zenith)*np.sin(tilt_pv)*np.cos(solar_azi-azim_pv))
         term1 = np.zeros([361,540])
         term2 = np.zeros([361,540])
